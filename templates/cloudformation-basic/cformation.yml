@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: {{templateDescription}}
+Resources:
+
+  {{dbSecurityGroup}}:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: DEFAULT_VPC_ID_PLACEHOLDER
+      GroupDescription: 'Database instances security group'
+      SecurityGroupIngress:
+        -
+          CidrIp: 0.0.0.0/0
+          FromPort: 3306
+          ToPort: 3306
+          IpProtocol: tcp
+
+  # Please replace the SubnetIds property's value with a list of your default subnet IDs!
+  DbSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: The subnets to launch DB instances
+      SubnetIds: [ DEFAULT_SUBNET_IDS_PLACEHOLDER ]
+
+  DatabaseInstance:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Delete
+    Properties:
+      AllocatedStorage: 20
+      BackupRetentionPeriod: 0
+      DBInstanceClass: db.t4g.micro
+      Engine: mysql
+      MasterUsername: dbadmin
+      MasterUserPassword: 12345678
+      MultiAZ: false
+      PubliclyAccessible: true
+      DBSubnetGroupName: !Ref DbSubnetGroup
+      VPCSecurityGroups:
+        - !Ref {{dbSecurityGroup}}

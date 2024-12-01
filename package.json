@@ -1,0 +1,25 @@
+{
+  "name": "mcli",
+  "version": "1.0.0",
+  "description": "A simple CLI to scaffold projects",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mcli": "bin/index.js"
+  },
+  "keywords": [
+    "cli",
+    "scaffold",
+    "project",
+    "node"
+  ],
+  "author": "Manny Diera",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^7.1.0",
+    "commander": "^12.1.0"
+  }
+}
