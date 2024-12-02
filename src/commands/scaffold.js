@@ -2,16 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { execSync } from 'child_process';
-import { input, select } from '@inquirer/prompts';
+import { select } from '@inquirer/prompts';
 import { availableProjectChoices } from '../../template.definitions.js';
-import { prompt } from '../../template-prompts/advanced.prompts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// write documentation for this in JSDOC
-
+/**
+ * Replaces placeholders in a string with provided values.
+ * @param {string} content - the original template content
+ * @param {object} variables - object containing values to replace in the template
+ * @returns {string} result - updated template content for the new project
+ */
 const replacePlaceholders = (content, variables) => {
   const placeholders = Object.keys(variables);
   let result = content;
@@ -53,7 +55,7 @@ const copyTemplate = (src, dest, variables) => {
  * Prompts the user for input if a prompt file exists for the selected template.
  *
  * @param {string} templateName - The name of the selected template.
- * @returns {Promise<void>} A promise that resolves when the user input has been collected.
+ * @returns {Promise<object>} A promise containing user selections that resolves when the user input has been collected.
  */
 const promptUserForTemplate = async (templateName) => {
   const userResponses = {};

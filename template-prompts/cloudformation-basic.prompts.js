@@ -3,7 +3,7 @@ import { input } from '@inquirer/prompts';
 /**
  * Prompts the user to enter the name of the Lambda function.
  *
- * @returns {Promise<{functionName: string}>} An object containing the function name.
+ * @returns {Promise<{templateDescription: string}, {dbSecurityGroup: string}>} - An object containing user selected or default values for this template.
  */
 export const prompt = async () => {
   let templateDescription;

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { scaffold } from '../src/commands/scaffold.js';
+
 const program = new Command();
 
 program
